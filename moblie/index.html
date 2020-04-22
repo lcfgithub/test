@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9;chrome=1">
+	<meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<meta content="email=no" name="format-detection">
+	<link rel="shortcut icon" type="image/x-icon" href="https://wx.gtimg.com/core/favicon.ico"; />
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<title>工单</title>
+</head>
+<body ontouchstart>
+<article class="page">
+	<section class="index-hd">
+		<div class="index-hd__search">
+			<div class="hd-search__inner">
+				<div class="icon-search"></div>
+				<input type="search" class="hd-search__searcharea" placeholder="请输入工单号或者问题关键字">
+			</div>
+		</div>
+		<div class="index-hd__tab">
+			<div class="hd-tab__items hd-tab__items_on">全部</div>
+			<div class="hd-tab__items">未处理</div>
+			<div class="hd-tab__items">处理中</div>
+			<div class="hd-tab__items">已处理</div>
+		</div>
+	</section>
+	<section class="index-bd">
+		<a class="index-bd__items" href="detail.html">
+			<div class="index-items__hd">
+				<div class="index-items__title">我想买这个服务应该怎么操作</div>
+				<div class="index-items__note">已结单</div>
+			</div>
+			<div class="index-items__bd">工单号：20180518546</div>
+			<div class="index-items__bd">提交时间：2018-05-01 15:07:00</div>
+		</a>
+		<a class="index-bd__items" href="detail.html">
+			<div class="index-items__hd">
+				<div class="index-items__title">微信支付回调商户失败数异常</div>
+				<div class="index-items__note">待处理</div>
+			</div>
+			<div class="index-items__bd">工单号：20180518546</div>
+			<div class="index-items__bd">提交时间：2018-05-01 15:07:00</div>
+		</a>
+		<a class="index-bd__items" href="detail.html">
+			<div class="index-items__hd">
+				<div class="index-items__title">微信支付回调商户失败数异常</div>
+				<div class="index-items__note">未处理</div>
+			</div>
+			<div class="index-items__bd">工单号：20180518546</div>
+			<div class="index-items__bd">提交时间：2018-05-01 15:07:00</div>
+		</a>
+		<!--页面底部加载模块交互说明
+			控制.bd-more__btn & .bd-more__ing & .bd-more__done，其中；
+			默认显示.bd-more__btn，当用户点击加载更多时，隐藏.bd-more__btn，显示.bd-more__ing，加载完成后，
+			显示.bd-more__btn或.bd-more__done。
+		-->
+		<!--页面底部加载模块 [[-->
+		<div class="index-bd__more">
+			<div class="bd-more__items bd-more__btn ">加载更多</div>
+			<div class="bd-more__items bd-more__ing hide">正在加载...</div>
+			<div class="bd-more__items bd-more__done hide">没有更多了</div>
+		</div>
+		<!--页面底部加载模块 ]]-->
+
+	</section>
+</article>
+<script src="js/echarts.common.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('.hd-tab__items').on('click', function () {
+            $(this).addClass('hd-tab__items_on').siblings('.hd-tab__items_on').removeClass('hd-tab__items_on');
+        })
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9;chrome=1">
+    <meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <link rel="shortcut icon" type="image/x-icon" href="https://wx.gtimg.com/core/favicon.ico"; />
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>支付实时错误码</title>
+</head>
+<body ontouchstart>
+<article class="page">
+    <section class="page-hd">
+        <div class="page-card__main">
+            <div class="card-bd__status">
+                <div class="card-status__hd">
+                    <!--状态图标交互说明
+                        .status-hd__icon_closecase 为已结单；
+                        .status-hd__icon_remindcase 为已提醒；
+                        .status-hd__icon_responsecase 为已响应；
+                        .status-hd__icon_unprocessedcase 为未处理；
+                        .status-hd__icon_processcase 为处理中。
+                    -->
+                    <div class="status-hd__icon status-hd__icon_closecase"></div>
+                    <div class="status-hd__txt">已结单</div>
+                </div>
+                <div class="card-status__bd">
+                    <p>故障单#5657#微信支付回调商户</p>
+                    <p>失败数异常</p>
+                </div>
+            </div>
+            <div class="card-status__cells">
+                <div class="status-cells__cell">
+                    <div class="status-cell__hd">工单创建时间：</div>
+                    <div class="status-cell__bd">2018年5月16日 10:31:00</div>
+                </div>
+                <div class="status-cells__cell">
+                    <div class="status-cell__hd">处理人：</div>
+                    <div class="status-cell__bd">guoweixiang,marlin</div>
+                </div>
+                <div class="status-cells__cell">
+                    <div class="status-cell__hd">更新人：</div>
+                    <div class="status-cell__bd">v_lianjian</div>
+                </div>
+                <div class="status-cells__cell">
+                    <div class="status-cell__hd">最后通知时间：</div>
+                    <div class="status-cell__bd">2018年5月16日 10:31:00</div>
+                </div>
+                <div class="status-cells__cell">
+                    <div class="status-cell__hd">通知次数：</div>
+                    <div class="status-cell__bd">1次</div>
+                </div>
+                <div class="status-cells__cell">
+                    <div class="status-cell__hd">工单响应时间：</div>
+                    <div class="status-cell__bd">2018年5月16日 10:31:00</div>
+                </div>
+                <div class="status-cells__cell">
+                    <div class="status-cell__hd">工单响应时长：</div>
+                    <div class="status-cell__bd">2小时</div>
+                </div>
+                <div class="status-cells__cell">
+                    <div class="status-cell__hd">工单持续时长：</div>
+                    <div class="status-cell__bd">5小时</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="page-bd">
+        <div class="page-card">
+            <div class="page-card__hd">
+                <div class="page-cardhd__txt">异常情况</div>
+                <div class="page-cardhd__note">统计时间：2017-02-15 13:34</div>
+            </div>
+            <div class="page-card__bd">
+                <div class="page-card__tab">
+                    <div class="page-cardtab__item page-cardtab__item_on">0.5H</div>
+                    <div class="page-cardtab__item">1H</div>
+                    <div class="page-cardtab__item">2H</div>
+                    <div class="page-cardtab__item">6H</div>
+                    <div class="page-cardtab__item">12H</div>
+                    <div class="page-cardtab__item">24H</div>
+                </div>
+                <div class="page-card__datetab">
+                    <div class="page-cardtab__dateitem page-cardtab__dateitem_on">统一下单</div>
+                    <div class="page-cardtab__dateitem">调用支付</div>
+                    <div class="page-cardtab__dateitem">支付回调</div>
+                </div>
+                <div class="page-cardbd__main">
+                    <div class="page-cardbd__annotate">
+                        <div class="page-iconbox">
+                            <div class="page-iconbox__icon_mini page-iconbox__icon_C49B44"></div>
+                            <p class="page-iconbox__title">今天</p>
+                        </div>
+                        <div class="page-iconbox">
+                            <div class="page-iconbox__icon_mini page-iconbox__icon_f76260"></div>
+                            <p class="page-iconbox__title">昨天</p>
+                        </div>
+                    </div>
+                    <div id="curve-echart"></div>
+                    <div class="curve-echart__note">失败数趋势图</div>
+                    <div class="box-cardbdmain__ft">
+                        <div class="wepaylist-hd__switch">
+                            <div class="switch-title">只看商户侧错误码</div>
+                            <input type="checkbox" class="cell-btn__switch" checked="checked" />
+                        </div>
+                    </div>
+                    <div class="box-cardbdmain_table">
+                        <div class="page-table">
+                            <div class="page-table__cell page-table__cell_on">
+                                <div class="pagetable-cell__item">支付场景</div>
+                                <div class="pagetable-cell__item">错误码TOP</div>
+                                <div class="pagetable-cell__item">今天</div>
+                                <div class="pagetable-cell__item">昨天</div>
+                            </div>
+                            <div class="page-table__cell">
+                                <div class="pagetable-cell__item">总体</div>
+                                <div class="pagetable-cell__item">总体</div>
+                                <div class="pagetable-cell__item">500
+                                    <p class="cell-item__add">+4515.86%</p>
+                                </div>
+                                <div class="pagetable-cell__item">200</div>
+                            </div>
+                            <div class="page-table__cell pagetable-cell__item_on">
+                                <div class="pagetable-cell__item">收银台支付</div>
+                                <div class="pagetable-cell__item">商户服务有问题，处理耗时过长，或返回200状态码</div>
+                                <div class="pagetable-cell__item">300
+                                    <p class="cell-item__cut">-85.86%</p>
+                                </div>
+                                <div class="pagetable-cell__item">100</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="page-ft">
+        <div class="page-card__hd">
+            <div class="page-cardhd__txt">处理过程</div>
+        </div>
+        <div class="page-process__main">
+            <div class="card-process__cells">
+                <div class="card-process__cell">
+                    <div class="process-cell__hd">2018-05-07 10:32</div>
+                    <div class="process-cell__bd">v_lianjxian：进行报障操作</div>
+                </div>
+                <div class="card-process__cell">
+                    <div class="process-cell__hd">2018-05-07 10:32</div>
+                    <div class="process-cell__bd">v_lianjyang：在移动端确认并发布了该故障，处理人为：guoweixiang；martin</div>
+                </div>
+                <div class="card-process__cell">
+                    <div class="process-cell__hd">2018-05-07 10:32</div>
+                    <div class="process-cell__bd">v_lianjyang：升级给财付通处理，对应财付通故障url</div>
+                </div>
+                <div class="card-process__cell">
+                    <div class="process-cell__hd">2018-05-07 10:32</div>
+                    <div class="process-cell__bd">v_lianjyang：进行故障恢复操作，故障总结：是B2C有问题引起的，调B2C接口的时候返回 错误60011100，目前观察已恢复，具体原因 有待进一步分析</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="page-bottom">
+        <div class="page-bottom__btn" id="openMessage">留言</div>
+        <div class="page-bottom__btn" id="openTransfer">转单</div>
+        <div class="page-bottom__btn" id="openCheck">结单</div>
+    </section>
+
+    <!--系统消息弹窗 [[-->
+    <div class="page-dialog__prompt">
+        <div class="mask"></div>
+        <div class="dialog-pro">
+            <div class="dialog-main">
+                <div class="dialog-main__hd">系统提示</div>
+                <div class="dialog-main__bd">
+                    <div class="dialog-bd__note">提示文字提示文字提示文字提示文字提示文字</div>
+                </div>
+            </div>
+            <div class="dialog-close" id="closePrompt">
+                <div class="dialog-close__btn"></div>
+            </div>
+        </div>
+    </div>
+    <!--系统消息弹窗 ]]-->
+
+    <!--留言弹窗 [[-->
+    <div class="page-dialog__message">
+        <div class="mask"></div>
+        <div class="dialog-pro">
+            <div class="dialog-main">
+                <div class="dialog-main__hd">留言追加</div>
+                <div class="dialog-main__bd">
+                    <div class="dialog-bd__tile">留言</div>
+                    <div class="dialog-bd__textarea">
+                        <textarea class="dialog-textarea__textarea" placeholder="请填写补充内容" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="dialog-main__ft">
+                    <div class="dialog-ft__btn">提交</div>
+                </div>
+            </div>
+            <div class="dialog-close" id="closeMessage">
+                <div class="dialog-close__btn"></div>
+            </div>
+        </div>
+    </div>
+    <!--留言弹窗 ]]-->
+
+    <!--转单弹窗 [[-->
+    <div class="page-dialog__transfer">
+        <div class="mask"></div>
+        <div class="dialog-pro">
+            <div class="dialog-main">
+                <div class="dialog-main__hd">转单</div>
+                <div class="dialog-main__bd">
+                    <div class="dialog-bd__tile">转单至</div>
+                    <div class="dialog-bd__textarea">
+                        <textarea class="dialog-textarea__textarea_ex" placeholder="请填写要转单给谁" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="dialog-main__bd">
+                    <div class="dialog-bd__tile">备注</div>
+                    <div class="dialog-bd__textarea">
+                        <textarea class="dialog-textarea__textarea" placeholder="请填写要备注的话~" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="dialog-main__ft">
+                    <div class="dialog-ft__btn">提交</div>
+                </div>
+            </div>
+            <div class="dialog-close" id="closeTransfer">
+                <div class="dialog-close__btn"></div>
+            </div>
+        </div>
+    </div>
+    <!--转单弹窗 ]]-->
+
+    <!--结单弹窗 [[-->
+    <div class="page-dialog_check">
+        <div class="mask"></div>
+        <div class="dialog-pro">
+            <div class="dialog-main">
+                <div class="dialog-main__hd">结单陈述</div>
+                <div class="dialog-main__bd">
+                    <div class="dialog-bd__tile">异常情况</div>
+                    <div class="dialog-bd__textarea">
+                        <textarea class="dialog-textarea__textarea" placeholder="请填写不少于4个字的异常原因" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="dialog-main__bd">
+                    <div class="dialog-bd__tile">处理方法</div>
+                    <div class="dialog-bd__textarea">
+                        <textarea class="dialog-textarea__textarea" placeholder="请填写不少于4个字的处理方法" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="dialog-main__ft">
+                    <div class="dialog-ft__btn">提交</div>
+                </div>
+            </div>
+            <div class="dialog-close" id="closeCheck">
+                <div class="dialog-close__btn"></div>
+            </div>
+        </div>
+
+    </div>
+    <!--结单弹窗 ]]-->
+
+</article>
+<script src="js/echarts.common.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('.page-dialog__message').hide();
+        $('.page-dialog__transfer').hide();
+        $('.page-dialog_check').hide();
+        $('#openMessage').on('click', function () {
+            $('.page-dialog__message').show();
+        });
+        $('#closeMessage').on('click', function () {
+            $('.page-dialog__message').hide();
+        });
+        $('#openTransfer').on('click', function () {
+            $('.page-dialog__transfer').show();
+        });
+        $('#closeTransfer').on('click', function () {
+            $('.page-dialog__transfer').hide();
+        });
+        $('#openCheck').on('click', function () {
+            $('.page-dialog_check').show();
+        });
+        $('#closeCheck').on('click', function () {
+            $('.page-dialog_check').hide();
+        });
+        $('#closePrompt').on('click', function () {
+            $('.page-dialog__prompt').hide();
+        });
+        $('.page-cardtab__item').on('click', function () {
+            $(this).addClass('page-cardtab__item_on').siblings('.page-cardtab__item_on').removeClass('page-cardtab__item_on');
+        });
+        $('.page-cardtab__dateitem').on('click', function () {
+            $(this).addClass('page-cardtab__dateitem_on').siblings('.page-cardtab__dateitem_on').removeClass('page-cardtab__dateitem_on');
+        });
+    })
+</script>
+<script>
+    function getRandomArbitrary(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+    var myChart = echarts.init(document.getElementById("curve-echart"));
+    var data1 = [], data2 = [];
+    var datanum = 100;
+    for(var i = 0; i < datanum; i++) {
+        data1.push(parseInt(getRandomArbitrary(100, 500)));
+        data2.push(parseInt(getRandomArbitrary(100, 500)));
+    }
+    // console.log(data1);
+    var option = {
+        animation : false,
+        backgroundColor: '#FBFBFB',
+        tooltip : {
+            trigger: 'axis',
+            // axisPointer: {
+            //     type: 'cross',
+            //     label: {
+            //         backgroundColor: '#6a7985'
+            //     }
+            // }
+        },
+        legend: {
+            data:['昨天','今天'],
+            x: 'left',
+            textStyle: {
+                fontSize: 18
+            }
+        },
+        // toolbox: {
+        // 	top : '20%',
+        //     feature: {
+        //         saveAsImage: {}
+        //     }
+        // },
+        dataZoom: [
+            {
+                type : "inside",
+                realtime: true,
+
+            }
+        ],
+        xAxis : [//x轴
+            {
+                axisLabel:{
+                    rotate: 35,//旋转x轴刻度标签的角度
+                    interval:parseInt(datanum / 30)//显示间隔，0表示全部显示、1表示隔一个显示一个，以此类推
+                },
+                splitLine : false,
+                type : 'category',//坐标轴类型
+                boundaryGap : false,//留白策略，针对不同的坐标轴类型有不同表现，待具体研究
+                data : function (){
+                    var list = [];
+                    for (var i = 0; i < datanum; i++) {
+                        if(i< 10){
+                            list.push('4:0' + i);
+                        }else{
+                            list.push('4:' + i);
+                        }
+                    }
+                    return list;
+                }()
+            }
+        ],
+        yAxis : [//y轴
+            {
+                type : 'value',
+
+            }
+        ],
+        series : [//n个数组对应n条曲线
+            {
+                name:'昨天',
+                type:'line',
+                symbol:'none',
+                smooth: 0.2,
+                color:['#C49B44'],
+                data:data1
+            },
+            {
+                name:'今天',
+                type:'line',
+                symbol:'none',
+                smooth: 0.2,
+                color:['#f76260'],
+                data:data2
+            }
+        ]
+    };
+    myChart.setOption(option);
+</script>
+</body>
+</html>
