@@ -9,7 +9,7 @@ http.createServer(function (req, res) {
   req.url = req.url === '/' ? '/index.html' : req.url
   let mime = mimeJosn[path.extname(req.url)] 
   res.writeHead(200, {'Content-Type': mime })
-  console.log(req.url)
+//   console.log(req.url)
   if ('/favicon.ico' !== req.url) {
     let content =  fs.readFileSync(__dirname + '/moblie' + req.url)
     res.write(content.toString())
