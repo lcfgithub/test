@@ -4,6 +4,7 @@ var path = require('path')
 var url = require('url')
 
 http.createServer(function (req, res) {
+  console.time('start')  
   let mimeJosn = fs.readFileSync(__dirname + '/mime.json')
   mimeJosn = JSON.parse(mimeJosn.toString())
   req.url = req.url === '/' ? '/index.html' : req.url
@@ -14,7 +15,7 @@ http.createServer(function (req, res) {
     let content =  fs.readFileSync(__dirname + '/moblie' + req.url)
     res.write(content.toString())
   }
-
+  console.time('start')
   res.end()
 }).listen(3300);
 
